@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         float moveHor = speed*Time.deltaTime*horizontalInput;
         float moveVer = speed*Time.deltaTime*verticalInput;
