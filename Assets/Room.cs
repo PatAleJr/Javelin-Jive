@@ -16,8 +16,10 @@ public class Room : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
+        {
             GameManager.instance.EnteredNextRoom();
-        Destroy(GetComponent<Collider2D>());
+            Destroy(GetComponent<Collider2D>());
+        }
     }
     public void destroyBottomWalls() {
         for (int i = 0; i < bottomWalls.Length; i++) {
