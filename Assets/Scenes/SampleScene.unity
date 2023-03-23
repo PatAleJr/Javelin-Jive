@@ -1649,7 +1649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 300, y: 220}
+  m_AnchoredPosition: {x: 280, y: 220}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &465099678
@@ -2384,7 +2384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesX: 17
   tilesY: 11
-  density: 0.1
+  density: 0.2
   wallPrefab: {fileID: 7042950063829930595, guid: 49f3372b509a1184cba7bc88a103e1f2, type: 3}
 --- !u!4 &685447694
 Transform:
@@ -3190,7 +3190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &903482842
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5552,11 +5552,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a89a9a621b9934089433534467fff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundIsActive: 0
+  gameState: 0
   round: 1
   timerText: {fileID: 1407208006}
   roundText: {fileID: 1277481020}
   roundTime: 45
+  GameScreen: {fileID: 1063079941}
+  TitleScreen: {fileID: 1735017026}
+  GameOverScreen: {fileID: 903482841}
 --- !u!4 &1646194642
 Transform:
   m_ObjectHideFlags: 0
