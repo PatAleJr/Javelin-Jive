@@ -11,6 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public float shootingCooldown = 0.5f;
     private float shootingCnt = 0f;
 
+    private Transform GFX;
+    private Animator ac;
+    
+    public void Start() {
+        GFX = transform.GetChild(0);
+        ac = transform.GetComponentInChildren<Animator>();
+    }
     public void Update()
     {
         if (shootingCnt <= 0) {
@@ -32,6 +39,17 @@ public class PlayerMovement : MonoBehaviour
 
         float moveHor = speed*Time.deltaTime*horizontalInput;
         float moveVer = speed*Time.deltaTime*verticalInput;
+
+        ac.SetBool("Sideways", horizontalInput != 0);
+        ac.SetBool("Down", moveVer < 0);
+        ac.SetBool("Up", moveVer > 0);
+
+        if (horizontalInput < 0) {
+            GFX.localScale = new Vector3(-1, 1, 1);
+        } else if (horizontalInput > 0) {
+            GFX.localScale = new Vector3(1, 1, 1);
+        }
+
         movement = new Vector3(moveHor, moveVer, 0f);
         transform.Translate(movement);
     }

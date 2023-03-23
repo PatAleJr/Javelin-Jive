@@ -33,8 +33,10 @@ public class Spear : MonoBehaviour
             Transform wall = Instantiate(spearWallPrefab).transform;
             wall.position = newWallPosition;
             Destroy(gameObject);
+        }
 
-            AstarPath.active.Scan();
+        if (collision.gameObject.tag == "WallPlayer") {
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Enemy")
