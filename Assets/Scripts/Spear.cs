@@ -32,6 +32,8 @@ public class Spear : MonoBehaviour
             Vector3 newWallPosition = collision.gameObject.transform.position + relativePosition;
             Transform wall = Instantiate(spearWallPrefab).transform;
             wall.position = newWallPosition;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            wall.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             Destroy(gameObject);
         }
 
