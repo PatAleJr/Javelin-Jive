@@ -15,6 +15,7 @@ public class EnemyMotion : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (player == null) return;
         Vector3 direction = player.transform.position - transform.position;
         direction.Normalize();
         

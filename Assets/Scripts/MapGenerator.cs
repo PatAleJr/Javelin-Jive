@@ -30,8 +30,6 @@ public class MapGenerator : MonoBehaviour
                     if (countNeighbors(xx, yy) >= 1)
                     {
                         grid[xx, yy] = true;
-                        GameObject newWall = Instantiate(wallPrefab);
-                        newWall.transform.position = new Vector3(xx - tilesX / 2, yy - tilesY / 2);
                     }
                     else
                     {
@@ -40,11 +38,25 @@ public class MapGenerator : MonoBehaviour
                 }
                 else {
                     if (countNeighbors(xx, yy) >= 3)
-                    {
                         grid[xx, yy] = true;
-                        GameObject newWall = Instantiate(wallPrefab);
-                        newWall.transform.position = new Vector3(xx - tilesX / 2, yy - tilesY / 2);
-                    }
+                }
+            }
+        }
+
+        //Guarantee a way in and out
+        grid[7, 0] = false;
+        grid[9, 0] = false;
+        grid[7, 1] = false;
+        grid[9, 1] = false;
+        for (int i = 0; i < tilesY; i++) {
+            grid[8, i] = false;
+        }
+
+        for (int xx = 1; xx < tilesX - 1; xx++) {
+            for (int yy = 1; yy < tilesY - 1; yy++) {
+                if (grid[xx, yy]) {
+                    GameObject newWall = Instantiate(wallPrefab, transform);
+                    newWall.transform.localPosition = new Vector3(xx - tilesX / 2, yy - tilesY / 2);
                 }
             }
         }

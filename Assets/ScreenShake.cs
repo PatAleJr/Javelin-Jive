@@ -14,6 +14,10 @@ public class ScreenShake : MonoBehaviour
     private Transform cam;
     private Vector3 initialCamPosition;
 
+    private Vector3 destination;
+    private float departTime;
+    private float arriveTime;
+
     private void Start()
     {
         if (instance != this)
@@ -21,7 +25,7 @@ public class ScreenShake : MonoBehaviour
         instance = this;
 
         cam = Camera.main.transform;
-        initialCamPosition = cam.transform.position;
+        initialCamPosition = cam.transform.localPosition;
     }
 
     public void Update()
@@ -31,11 +35,18 @@ public class ScreenShake : MonoBehaviour
             float offX = Random.Range(-shakeMagnitude, shakeMagnitude);
             float offY = Random.Range(-shakeMagnitude, shakeMagnitude);
             Vector3 offset = new Vector3(offX, offY, 0);
-            cam.position = initialCamPosition + offset;
+            cam.localPosition = initialCamPosition + offset;
         }
         else {
-            cam.position = initialCamPosition;
+            cam.localPosition = initialCamPosition;
             shakeMagnitude = 0;
+        }
+
+        if (destination == Vector3.zero) return;
+        transform.position = Vector3.Lerp(transform.position, destination, (Time.time - departTime) / (arriveTime - departTime));
+        if ((transform.position - destination).magnitude < 0.01f) {
+            destination = Vector3.zero;
+            GameManager.instance.BeginRound();
         }
     }
     public void shake(float magnitude, float duration) {
@@ -44,5 +55,11 @@ public class ScreenShake : MonoBehaviour
         shakeDuration = duration;
 
         endShakeTime = Time.time + shakeDuration;
+    }
+
+    public void moveToDestination(Vector3 destination, float travelTime) {
+        this.destination = destination;
+        departTime = Time.time;
+        arriveTime = Time.time + travelTime;
     }
 }
