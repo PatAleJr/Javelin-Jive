@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform GFX;
     private Animator ac;
 
+    public GameObject rockParticles;
     public void Start()
     {
         GFX = transform.GetChild(0);
@@ -123,6 +124,8 @@ public class PlayerMovement : MonoBehaviour
             if (spearWallTimer >= spearWallDestroyTime)
             {
                 spearWallTimer = 0f;
+                GameObject parts = Instantiate(rockParticles);
+                parts.transform.position = collision.gameObject.transform.position;
                 Destroy(collision.gameObject);
             }
         }

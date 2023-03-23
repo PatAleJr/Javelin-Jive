@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
 
     private SpriteRenderer sr;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
 
     public GameObject deathParticles;
     public GameObject hitParticles;
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         setColorAccordingToHealth();
     }
@@ -44,6 +46,9 @@ public class Enemy : MonoBehaviour
         StartCoroutine(resetColor());
 
         rb.AddForce(direction * knockback);
+
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
+        audioSource.Play();
 
         if (health <= 0) die();
     }
