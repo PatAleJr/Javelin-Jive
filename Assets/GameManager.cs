@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     private float time;
     public float roundTime = 45;
 
-    public void BeginRound() {
+    public void BeginRound()
+    {
         roundIsActive = true;
         time = roundTime;
 
@@ -26,12 +27,20 @@ public class GameManager : MonoBehaviour
     {
         BeginRound();
     }
+
     public void Update()
     {
         if (roundIsActive)
         {
             time -= Time.deltaTime;
             timerText.text = time.ToString("#.00");
+
+            if (time <= 0)
+            {
+                roundIsActive = false;
+                round++;
+                time = 0;
+            }
         }
     }
 }
