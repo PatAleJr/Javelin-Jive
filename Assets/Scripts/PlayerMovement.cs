@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator ac;
 
     public GameObject rockParticles;
+
     public void Start()
     {
         GFX = transform.GetChild(0);
@@ -73,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void shoot(Vector3 direction)
     {
-        if (GameManager.instance.gameState != GameManager.GameState.Play) return;
+        if (GameManager.instance.gameState != GameManager.GameState.Play)
+            return;
         if (direction == Vector3.zero)
             return;
 
