@@ -83,6 +83,14 @@ public class PlayerMovement : MonoBehaviour
 
         spear.GetComponent<Spear>().direction = direction;
 
+        // play shoot noise from audio source
+        // audio source is a child of the player
+        GetComponent<AudioSource>()
+            .Play();
+
+        // randomize the pitch of the audio source
+        GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+
         shootingCnt = shootingCooldown;
     }
 
