@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4899086693659927220}
   - component: {fileID: 4899086693659927223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,9 +93,9 @@ GameObject:
   - component: {fileID: 4899086694231778042}
   - component: {fileID: 4899086694231778043}
   - component: {fileID: 4899086694231778040}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallPlayer
-  m_TagString: Wall
+  m_TagString: WallPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

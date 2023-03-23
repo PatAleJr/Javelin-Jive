@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
     public int health = 10;
     public float damageFlashTime = 0.1f;
 
+    public float knockback = 5f;
+
     private SpriteRenderer sr;
+    private Rigidbody2D rb;
 
     public GameObject deathParticles;
     public GameObject hitParticles;
@@ -16,8 +18,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
-
-        GetComponent<AIDestinationSetter>().target = GameObject.Find("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
 
         setColorAccordingToHealth();
     }
@@ -41,6 +42,8 @@ public class Enemy : MonoBehaviour
 
         sr.color = Color.white;
         StartCoroutine(resetColor());
+
+        rb.AddForce(direction * knockback);
 
         if (health <= 0) die();
     }
