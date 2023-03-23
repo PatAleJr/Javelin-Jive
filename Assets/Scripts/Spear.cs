@@ -15,7 +15,7 @@ public class Spear : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall") {
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "SpearWall") {
 
             Collider2D collider = collision.collider;
             Vector3 contactPoint = collision.contacts[0].point;

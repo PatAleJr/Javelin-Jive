@@ -2286,7 +2286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesX: 17
   tilesY: 11
-  density: 0.4
+  density: 0.1
   wallPrefab: {fileID: 7042950063829930595, guid: 49f3372b509a1184cba7bc88a103e1f2, type: 3}
 --- !u!4 &685447694
 Transform:
@@ -4106,7 +4106,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1277481021
@@ -4459,7 +4459,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1407208007
