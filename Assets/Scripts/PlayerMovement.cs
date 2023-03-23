@@ -36,9 +36,7 @@ public class PlayerMovement : MonoBehaviour
                 shootDirection[0] += 1;
 
             shoot(new Vector3(shootDirection[0], shootDirection[1], 0f));
-        }
-        else
-        {
+        } else {
             shootingCnt -= Time.deltaTime;
         }
     }
@@ -85,8 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         // play shoot noise from audio source
         // audio source is a child of the player
-        GetComponent<AudioSource>()
-            .Play();
+        GetComponent<AudioSource>().Play();
 
         // randomize the pitch of the audio source
         GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);

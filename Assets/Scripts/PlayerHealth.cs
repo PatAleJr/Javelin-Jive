@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
         health--;
         hearts[health].SetActive(false);
         if (health <= 0) die();
+        ScreenShake.instance.shake(0.1f, 0.2f);
     }
 
     public void die() {
