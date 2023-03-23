@@ -159,7 +159,7 @@ MonoBehaviour:
   speed: 8
   movement: {x: 0, y: 0, z: 0}
   spearPrefab: {fileID: 1960428404605380063, guid: a6fd0afb4ffd13c439c3aa2573c107ff, type: 3}
-  shootingCooldown: 0.2
+  shootingCooldown: 0.3
   rockParticles: {fileID: 5519398715256709040, guid: b9e080f7c58c21040b718b8c8096d671, type: 3}
   spearWallDestroyTime: 0.5
 --- !u!4 &65180487
