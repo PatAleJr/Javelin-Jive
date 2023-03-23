@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void die() {
+        GameManager.instance.GameOver();
         Destroy(gameObject);
     }
 }

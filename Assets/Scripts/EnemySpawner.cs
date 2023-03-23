@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gameState != GameManager.GameState.Play) return;
+
         if (Time.time >= nextSpawnTime) {
             spawn();
             nextSpawnTime = Time.time + spawnPeriod;
