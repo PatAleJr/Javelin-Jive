@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     [Header("Rounds")]
     public float[] density;
     public float[] spawnPeriod;
+    public int[] minEnemyHealth;
+    public int[] maxEnemyHealth;
 
     void Start() { 
         EnterTitleScreen();
@@ -96,7 +98,7 @@ public class GameManager : MonoBehaviour
         GameObject newRoom = Instantiate(roomPrefab);
         newRoom.transform.position = currentRoom.transform.position + new Vector3(0, -roomHeight, 0);
         currentRoom = newRoom.GetComponent<Room>();
-        currentRoom.DefineParameters(density[round-1], spawnPeriod[round-1]);
+        currentRoom.DefineParameters(density[round-1], spawnPeriod[round-1], minEnemyHealth[round-1], maxEnemyHealth[round-1]);
         currentRoom.deactivateTopWalls();
     }
 
@@ -118,7 +120,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameState == GameState.Title)
         {
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
                 ExitTitleScreen();
         }
         else if (gameState == GameState.End) {

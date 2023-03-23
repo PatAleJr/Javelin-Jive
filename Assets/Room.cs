@@ -39,9 +39,11 @@ public class Room : MonoBehaviour
         }
     }
 
-    public void DefineParameters(float density, float spawnPeriod) { 
+    public void DefineParameters(float density, float spawnPeriod, int minEnemyHealth, int maxEnemyHealth) { 
         mapGenerator.density = density;
         mapGenerator.generate();
         enemySpawner.spawnPeriod = spawnPeriod;
+        enemySpawner.minHealth = minEnemyHealth;
+        enemySpawner.maxHealth = maxEnemyHealth;
     }
 }

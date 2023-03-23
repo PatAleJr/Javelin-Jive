@@ -9,6 +9,9 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] spawnPoints;
 
     public GameObject enemyPrefab;
+
+    public int minHealth = 2;
+    public int maxHealth = 5;
         
     void Start() {
         nextSpawnTime = Time.time + spawnPeriod;
@@ -28,5 +31,6 @@ public class EnemySpawner : MonoBehaviour
         int spawnPositionIndex = (int)Random.Range(0, spawnPoints.Length);
         GameObject newEnemy = Instantiate(enemyPrefab);
         newEnemy.transform.position = spawnPoints[spawnPositionIndex].position;
+        newEnemy.GetComponent<Enemy>().health = (int)Random.Range(minHealth, maxHealth+1);
     }
 }
