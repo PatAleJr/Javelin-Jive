@@ -7,6 +7,12 @@ public class Room : MonoBehaviour
     public GameObject[] bottomWalls;
     public GameObject[] topWalls;
 
+    float density, spawnPeriod;
+    int minEnemyHealth, maxEnemyHealth;
+
+    public MapGenerator mapGenerator;
+    public EnemySpawner enemySpawner;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -31,5 +37,11 @@ public class Room : MonoBehaviour
         {
             topWalls[i].SetActive(true);
         }
+    }
+
+    public void DefineParameters(float density, float spawnPeriod) { 
+        mapGenerator.density = density;
+        mapGenerator.generate();
+        enemySpawner.spawnPeriod = spawnPeriod;
     }
 }

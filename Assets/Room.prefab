@@ -521,6 +521,8 @@ MonoBehaviour:
   - {fileID: 2584478073148111321}
   - {fileID: 2584478073660287808}
   - {fileID: 2584478073615535429}
+  mapGenerator: {fileID: 6926787436372791618}
+  enemySpawner: {fileID: 6926787436698787529}
 --- !u!61 &2341269079128955030
 BoxCollider2D:
   m_ObjectHideFlags: 0

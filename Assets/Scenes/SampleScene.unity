@@ -2090,7 +2090,7 @@ MonoBehaviour:
   timerTextGame: {fileID: 1407208006}
   roundTextGame: {fileID: 1277481020}
   roundTextIntermediate: {fileID: 699556658}
-  roundTime: 8
+  roundTime: 20
   GameScreen: {fileID: 1063079941}
   IntermediateScreen: {fileID: 935475246}
   TitleScreen: {fileID: 1735017026}
@@ -2098,6 +2098,18 @@ MonoBehaviour:
   roomPrefab: {fileID: 6926787437009017764, guid: 8974166cd501ae040a1f6142a56bcb9e, type: 3}
   currentRoom: {fileID: 0}
   roomHeight: 13
+  density:
+  - 0
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  spawnPeriod:
+  - 5
+  - 4
+  - 3
+  - 2
+  - 1
 --- !u!4 &1646194642
 Transform:
   m_ObjectHideFlags: 0

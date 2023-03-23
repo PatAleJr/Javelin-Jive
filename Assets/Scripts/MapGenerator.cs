@@ -10,23 +10,30 @@ public class MapGenerator : MonoBehaviour
 
     public GameObject wallPrefab;
 
-    void Start()
-    {
-        bool[,] grid = new bool[tilesX,tilesY];
+    public void generate() {
+        bool[,] grid = new bool[tilesX, tilesY];
 
-        for (int xx = 0; xx < tilesX; xx++) { 
-            for (int yy = 0; yy < tilesY; yy++) { 
-                if ((float)Random.Range(0f, 1f) < density) {
-                    grid[xx,yy] = true;
-                } else {
-                    grid[xx,yy] = false;
+        for (int xx = 0; xx < tilesX; xx++)
+        {
+            for (int yy = 0; yy < tilesY; yy++)
+            {
+                if ((float)Random.Range(0f, 1f) < density)
+                {
+                    grid[xx, yy] = true;
+                }
+                else
+                {
+                    grid[xx, yy] = false;
                 }
             }
         }
 
-        for (int xx = 1; xx < tilesX-1; xx++) { 
-            for (int yy = 1; yy < tilesY-1; yy++) {
-                if (grid[xx, yy]) {
+        for (int xx = 1; xx < tilesX - 1; xx++)
+        {
+            for (int yy = 1; yy < tilesY - 1; yy++)
+            {
+                if (grid[xx, yy])
+                {
                     if (countNeighbors(xx, yy) >= 1)
                     {
                         grid[xx, yy] = true;
@@ -36,7 +43,8 @@ public class MapGenerator : MonoBehaviour
                         grid[xx, yy] = false;
                     }
                 }
-                else {
+                else
+                {
                     if (countNeighbors(xx, yy) >= 3)
                         grid[xx, yy] = true;
                 }
@@ -48,13 +56,17 @@ public class MapGenerator : MonoBehaviour
         grid[9, 0] = false;
         grid[7, 1] = false;
         grid[9, 1] = false;
-        for (int i = 0; i < tilesY; i++) {
+        for (int i = 0; i < tilesY; i++)
+        {
             grid[8, i] = false;
         }
 
-        for (int xx = 1; xx < tilesX - 1; xx++) {
-            for (int yy = 1; yy < tilesY - 1; yy++) {
-                if (grid[xx, yy]) {
+        for (int xx = 1; xx < tilesX - 1; xx++)
+        {
+            for (int yy = 1; yy < tilesY - 1; yy++)
+            {
+                if (grid[xx, yy])
+                {
                     GameObject newWall = Instantiate(wallPrefab, transform);
                     newWall.transform.localPosition = new Vector3(xx - tilesX / 2, yy - tilesY / 2);
                 }

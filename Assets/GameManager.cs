@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI roundTextIntermediate;
 
     private float time;
-    public float roundTime = 8;
+    public float roundTime = 20;
 
     public GameObject GameScreen;
     public GameObject IntermediateScreen;
@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
     public Room currentRoom;
     private Room previousRoom;
     public int roomHeight;
+
+    [Header("Rounds")]
+    public float[] density;
+    public float[] spawnPeriod;
 
     void Start() { 
         EnterTitleScreen();
@@ -92,12 +96,15 @@ public class GameManager : MonoBehaviour
         GameObject newRoom = Instantiate(roomPrefab);
         newRoom.transform.position = currentRoom.transform.position + new Vector3(0, -roomHeight, 0);
         currentRoom = newRoom.GetComponent<Room>();
+        currentRoom.DefineParameters(density[round-1], spawnPeriod[round-1]);
         currentRoom.deactivateTopWalls();
     }
 
     public void EnteredNextRoom() {
         currentRoom.activateTopWalls();
         ScreenShake.instance.moveToDestination(currentRoom.transform.position, 50f);
+        foreach (GameObject wall in GameObject.FindGameObjectsWithTag("SpearWall"))
+            Destroy(wall, 5f);
     }
     public void GameOver()
     {
