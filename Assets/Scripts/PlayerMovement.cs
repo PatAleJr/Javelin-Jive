@@ -36,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
                 shootDirection[0] += 1;
 
             shoot(new Vector3(shootDirection[0], shootDirection[1], 0f));
-        } else {
+        }
+        else
+        {
             shootingCnt -= Time.deltaTime;
         }
     }
@@ -83,7 +85,8 @@ public class PlayerMovement : MonoBehaviour
 
         // play shoot noise from audio source
         // audio source is a child of the player
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>()
+            .Play();
 
         // randomize the pitch of the audio source
         GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
@@ -100,6 +103,21 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Hitting Spear Wall");
             spearWallTimer += Time.deltaTime;
+
+            // shake the spear wall sprite slightly and increase the shake over time sprite renderer is child 0 change the position using sin and cos
+            collision.gameObject.transform.GetChild(0).transform.position =
+                collision.gameObject.transform.position
+                + new Vector3(
+                    // x use random to make it more random and increase the shake over time
+                    Mathf.Sin(Time.time * 10f * spearWallTimer)
+                        * 0.1f
+                        * spearWallTimer,
+                    // y use random to make it more random and increase the shake over time
+                    Mathf.Cos(Time.time * 10f * spearWallTimer)
+                        * 0.1f
+                        * spearWallTimer,
+                    0f
+                );
 
             if (spearWallTimer >= spearWallDestroyTime)
             {
