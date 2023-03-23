@@ -13,17 +13,20 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform GFX;
     private Animator ac;
-    
-    public void Start() {
+
+    public void Start()
+    {
         GFX = transform.GetChild(0);
         ac = transform.GetComponentInChildren<Animator>();
     }
+
     public void Update()
     {
-        if (shootingCnt <= 0) {
+        if (shootingCnt <= 0)
+        {
             // allow 8 way shooting
             float[] shootDirection = new float[2];
-            if (Input.GetKey(KeyCode.UpArrow)) 
+            if (Input.GetKey(KeyCode.UpArrow))
                 shootDirection[1] += 1;
             if (Input.GetKey(KeyCode.DownArrow))
                 shootDirection[1] -= 1;
@@ -32,29 +35,32 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
                 shootDirection[0] += 1;
 
-    
             shoot(new Vector3(shootDirection[0], shootDirection[1], 0f));
         }
-        else {
+        else
+        {
             shootingCnt -= Time.deltaTime;
         }
-
     }
+
     void FixedUpdate()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        float moveHor = speed*Time.deltaTime*horizontalInput;
-        float moveVer = speed*Time.deltaTime*verticalInput;
+        float moveHor = speed * Time.deltaTime * horizontalInput;
+        float moveVer = speed * Time.deltaTime * verticalInput;
 
         ac.SetBool("Sideways", horizontalInput != 0);
         ac.SetBool("Down", moveVer < 0);
         ac.SetBool("Up", moveVer > 0);
 
-        if (horizontalInput < 0) {
+        if (horizontalInput < 0)
+        {
             GFX.localScale = new Vector3(-1, 1, 1);
-        } else if (horizontalInput > 0) {
+        }
+        else if (horizontalInput > 0)
+        {
             GFX.localScale = new Vector3(1, 1, 1);
         }
 
@@ -64,7 +70,8 @@ public class PlayerMovement : MonoBehaviour
         ac.speed = movement == Vector3.zero ? 0f : 1f;
     }
 
-    private void shoot(Vector3 direction) {
+    private void shoot(Vector3 direction)
+    {
         if (direction == Vector3.zero)
             return;
 
@@ -77,5 +84,31 @@ public class PlayerMovement : MonoBehaviour
         spear.GetComponent<Spear>().direction = direction;
 
         shootingCnt = shootingCooldown;
+    }
+
+    float spearWallTimer = 0f;
+    public float spearWallDestroyTime = 0.5f;
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "SpearWall")
+        {
+            Debug.Log("Hitting Spear Wall");
+            spearWallTimer += Time.deltaTime;
+
+            if (spearWallTimer >= spearWallDestroyTime)
+            {
+                spearWallTimer = 0f;
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "SpearWall")
+        {
+            spearWallTimer = 0f;
+        }
     }
 }
