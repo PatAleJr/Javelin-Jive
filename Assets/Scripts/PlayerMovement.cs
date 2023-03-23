@@ -60,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
 
         movement = new Vector3(moveHor, moveVer, 0f);
         transform.Translate(movement);
+
+        ac.speed = movement == Vector3.zero ? 0f : 1f;
     }
 
     private void shoot(Vector3 direction) {

@@ -41,7 +41,7 @@ public class Spear : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().takeDamage(1);
+            collision.gameObject.GetComponent<Enemy>().takeDamage(1, direction);
             Destroy(gameObject);
         }
     }

@@ -9,12 +9,13 @@ public class Enemy : MonoBehaviour
     public float damageFlashTime = 0.1f;
 
     private SpriteRenderer sr;
-    private Color initialColor;
+
+    public GameObject deathParticles;
+    public GameObject hitParticles;
 
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
-        initialColor = sr.color;
 
         GetComponent<AIDestinationSetter>().target = GameObject.Find("Player").transform;
 
@@ -23,16 +24,20 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision");
         if (collision.gameObject.tag == "Player") {
-            Debug.Log("With player");
             collision.gameObject.GetComponent<PlayerHealth>().takeDamage();
             Destroy(gameObject);
         }
     }
 
-    public void takeDamage(int damage) {
+    public void takeDamage(int damage, Vector3 direction) {
         health -= damage;
+
+        GameObject parts = Instantiate(hitParticles);
+        parts.transform.position = transform.position;
+        var main = parts.GetComponent<ParticleSystem>().main;
+        main.startColor = sr.color;
+        parts.transform.rotation = Quaternion.LookRotation(direction);
 
         sr.color = Color.white;
         StartCoroutine(resetColor());
@@ -45,7 +50,9 @@ public class Enemy : MonoBehaviour
         setColorAccordingToHealth();
     }
 
-    private void die() { 
+    private void die() {
+        GameObject parts = Instantiate(deathParticles);
+        parts.transform.position = transform.position;
         Destroy(gameObject);
     }
 
