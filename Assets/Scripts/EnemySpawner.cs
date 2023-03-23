@@ -32,5 +32,6 @@ public class EnemySpawner : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab);
         newEnemy.transform.position = spawnPoints[spawnPositionIndex].position;
         newEnemy.GetComponent<Enemy>().health = (int)Random.Range(minHealth, maxHealth+1);
+        if (minHealth == maxHealth) newEnemy.GetComponent<Enemy>().health = minHealth;
     }
 }
