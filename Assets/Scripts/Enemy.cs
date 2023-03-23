@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
     private void die() {
         GameObject parts = Instantiate(deathParticles);
         parts.transform.position = transform.position;
+        ScreenShake.instance.shake(0.05f, 0.1f);
         Destroy(gameObject);
     }
 
