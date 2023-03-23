@@ -25,21 +25,38 @@ public class MapGenerator : MonoBehaviour
         }
 
         for (int xx = 1; xx < tilesX-1; xx++) { 
-            for (int yy = 1; yy < tilesY-1; yy++) { 
-                if (grid[xx,yy]) {
-                    if (grid[xx-1,yy] || grid[xx+1,yy] || grid[xx,yy-1] || grid[xx,yy+1]) {
+            for (int yy = 1; yy < tilesY-1; yy++) {
+                if (grid[xx, yy]) {
+                    if (countNeighbors(xx, yy) >= 1)
+                    {
                         grid[xx, yy] = true;
                         GameObject newWall = Instantiate(wallPrefab);
-                        newWall.transform.position = new Vector3(xx - tilesX/2, yy - tilesY/2);
-                    } else {
-                        grid[xx,yy] = false;
+                        newWall.transform.position = new Vector3(xx - tilesX / 2, yy - tilesY / 2);
+                    }
+                    else
+                    {
+                        grid[xx, yy] = false;
+                    }
+                }
+                else {
+                    if (countNeighbors(xx, yy) >= 3)
+                    {
+                        grid[xx, yy] = true;
+                        GameObject newWall = Instantiate(wallPrefab);
+                        newWall.transform.position = new Vector3(xx - tilesX / 2, yy - tilesY / 2);
                     }
                 }
             }
         }
-    }
 
-    void countNeighbors(int xx, int yy) {
-        
+        int countNeighbors(int xx, int yy)
+        {
+            int cnt = 0;
+            if (grid[xx - 1, yy]) cnt++;
+            if (grid[xx + 1, yy]) cnt++;
+            if (grid[xx, yy - 1]) cnt++;
+            if (grid[xx, yy + 1]) cnt++;
+            return cnt;
+        }
     }
 }

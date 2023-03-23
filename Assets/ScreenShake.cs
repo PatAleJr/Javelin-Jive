@@ -35,10 +35,11 @@ public class ScreenShake : MonoBehaviour
         }
         else {
             cam.position = initialCamPosition;
+            shakeMagnitude = 0;
         }
-
     }
-    public void shake(float magnitude, float duration) { 
+    public void shake(float magnitude, float duration) {
+        if (magnitude < shakeMagnitude) return;
         shakeMagnitude = magnitude;
         shakeDuration = duration;
 
