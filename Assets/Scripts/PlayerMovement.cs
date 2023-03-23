@@ -21,35 +21,25 @@ public class PlayerMovement : MonoBehaviour
     public void Update()
     {
         if (shootingCnt <= 0) {
-            //if (Input.GetKeyUp(KeyCode.UpArrow))
-            //    shoot(Vector3.up);
-            //if (Input.GetKeyUp(KeyCode.DownArrow))
-            //    shoot(Vector3.down);
-            //if (Input.GetKeyUp(KeyCode.LeftArrow))
-            //    shoot(Vector3.left);
-            //if (Input.GetKeyUp(KeyCode.RightArrow))
-            //    shoot(Vector3.right);
-
             // allow 8 way shooting
             float[] shootDirection = new float[2];
-            if (Input.GetKeyUp(KeyCode.UpArrow)) {
-
+            if (Input.GetKey(KeyCode.UpArrow)) 
                 shootDirection[1] += 1;
-                console.log("up");
-            }
-            if (Input.GetKeyUp(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.DownArrow))
                 shootDirection[1] -= 1;
-            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow))
                 shootDirection[0] -= 1;
-            if (Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow))
                 shootDirection[0] += 1;
 
     
             shoot(new Vector3(shootDirection[0], shootDirection[1], 0f));
-            
 
         }
-        shootingCnt -= Time.deltaTime;
+        else {
+            shootingCnt -= Time.deltaTime;
+        }
+
     }
     void FixedUpdate()
     {
