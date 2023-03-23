@@ -2286,11 +2286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesX: 17
   tilesY: 11
-<<<<<<< HEAD
-  density: 0.2
-=======
   density: 0.1
->>>>>>> 473923ac29ff093b77a92e5093406908770af4c5
   wallPrefab: {fileID: 7042950063829930595, guid: 49f3372b509a1184cba7bc88a103e1f2, type: 3}
 --- !u!4 &685447694
 Transform:
