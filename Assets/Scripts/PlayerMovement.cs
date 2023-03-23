@@ -21,14 +21,33 @@ public class PlayerMovement : MonoBehaviour
     public void Update()
     {
         if (shootingCnt <= 0) {
-            if (Input.GetKeyUp(KeyCode.UpArrow))
-                shoot(Vector3.up);
+            //if (Input.GetKeyUp(KeyCode.UpArrow))
+            //    shoot(Vector3.up);
+            //if (Input.GetKeyUp(KeyCode.DownArrow))
+            //    shoot(Vector3.down);
+            //if (Input.GetKeyUp(KeyCode.LeftArrow))
+            //    shoot(Vector3.left);
+            //if (Input.GetKeyUp(KeyCode.RightArrow))
+            //    shoot(Vector3.right);
+
+            // allow 8 way shooting
+            float[] shootDirection = new float[2];
+            if (Input.GetKeyUp(KeyCode.UpArrow)) {
+
+                shootDirection[1] += 1;
+                console.log("up");
+            }
             if (Input.GetKeyUp(KeyCode.DownArrow))
-                shoot(Vector3.down);
+                shootDirection[1] -= 1;
             if (Input.GetKeyUp(KeyCode.LeftArrow))
-                shoot(Vector3.left);
+                shootDirection[0] -= 1;
             if (Input.GetKeyUp(KeyCode.RightArrow))
-                shoot(Vector3.right);
+                shootDirection[0] += 1;
+
+    
+            shoot(new Vector3(shootDirection[0], shootDirection[1], 0f));
+            
+
         }
         shootingCnt -= Time.deltaTime;
     }
@@ -55,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void shoot(Vector3 direction) {
+        if (direction == Vector3.zero)
+            return;
+
         GameObject spear = Instantiate(spearPrefab);
         spear.transform.position = transform.position + direction;
 
