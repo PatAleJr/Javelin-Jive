@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
     
             shoot(new Vector3(shootDirection[0], shootDirection[1], 0f));
-
         }
         else {
             shootingCnt -= Time.deltaTime;
