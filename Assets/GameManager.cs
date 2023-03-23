@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI timerTextGame;
     public TextMeshProUGUI roundTextGame;
-
     public TextMeshProUGUI roundTextIntermediate;
+    public TextMeshProUGUI roundTextEnd;
 
     private float time;
     public float roundTime = 20;
@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        roundTextEnd.text = "Round " + round;
         gameState = GameState.End;
         GameOverScreen.SetActive(true);
         GameScreen.SetActive(false);
